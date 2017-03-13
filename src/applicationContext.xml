@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+       	<context:component-scan base-package="com.ck"></context:component-scan> 
+        
+        <!--连接数据库配置文件-->
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="location" value="classpath:db.properties"/>
+        </bean>
+        <!--配置数据源-->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <property name="driverClassName" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+        </bean>
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/view/"></property>
+			<property name="suffix" value=".jsp"></property>
+		</bean>
+        
+        <!--配置session工厂-->
+        <bean id="sqlsessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        </bean>
+
+        <bean id="adminDao" class="com.ck.dao.AdminDaoImpl">
+                <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+
+        <bean id="adminService" class="com.ck.service.AdminServiceImpl">
+                <property name="adminDao" ref="adminDao"/>
+        </bean>
+
+</beans>

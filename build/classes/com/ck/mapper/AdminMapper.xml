@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.ck.mapper.AdminMapper">
+    <!--采用* 表的属性必须和pojos属性名相同-->
+    <select id="selectAll" resultType="admin">
+        SELECT * FROM admin
+    </select>
+	
+	<insert id="addAdmin" parameterType="admin">
+		insert into admin(id, name,password)  
+             values(#{id},#{name},#{password})
+	</insert>
+	
+	<select id="getMaxAdminId" resultType="int">
+        SELECT max(id) from admin
+    </select>
+	
+</mapper>
