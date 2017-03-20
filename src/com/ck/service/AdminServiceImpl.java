@@ -28,32 +28,22 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int deleteAdmin(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return adminDao.deleteAdmin(id);
 	}
 
 	@Override
 	public int updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return 0;
+		return adminDao.updateAdmin(admin);
 	}
 
 	@Override
-	public int modifyPasswordById(Integer id, String password) {
+	public int modifyPasswordById(Admin admin) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public Admin getAdminById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminDao.getAdminById(id);
 	}
-
-	@Override
-	public int getMaxAdminId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

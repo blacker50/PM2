@@ -1,15 +1,12 @@
 /*
 Navicat MySQL Data Transfer
-
 Source Server         : 127.0.0.1_3306
 Source Server Version : 50087
 Source Host           : 127.0.0.1:3306
 Source Database       : pm
-
 Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
-
 Date: 2017-03-23 12:00:00
 */
 
@@ -69,7 +66,7 @@ CREATE TABLE `meter_reader` (
 -- ----------------------------
 -- Records of meter_reader
 -- ----------------------------
-INSERT INTO `meter_reader` VALUES ('101', 'Â∞èÂ§è', '1', '0');
+INSERT INTO `meter_reader` VALUES ('101', '–°œƒ', '1', '0');
 
 -- ----------------------------
 -- Table structure for meter_reading_problem

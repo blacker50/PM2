@@ -22,32 +22,27 @@ public class AdminDaoImpl extends SqlSessionDaoSupport implements AdminDao {
 
 	@Override
 	public int deleteAdmin(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+		String statement = "com.ck.mapper.AdminMapper.deleteAdmin";
+		return getSqlSession().delete(statement, id);
 	}
 
 	@Override
 	public int updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return 0;
+		String statement = "com.ck.mapper.AdminMapper.updateAdminMess";
+		return getSqlSession().update(statement, admin);
 	}
 
 	@Override
-	public int modifyPasswordById(Integer id, String password) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int modifyPasswordById(Admin admin) {
+		String statement = "com.ck.mapper.AdminMapper.modifyAdminPassword";
+		return getSqlSession().update(statement,admin);
 	}
 
 	@Override
 	public Admin getAdminById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String statement = "com.ck.mapper.AdminMapper.getAdminById";
+		return getSqlSession().selectOne(statement, id);
 	}
 
-	@Override
-	public int getMaxAdminId() {
-		String statement = "com.ck.mapper.AdminMapper.getMaxAdminId";
-		return getSqlSession().selectOne(statement);
-	}
 
 }

@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -22,7 +23,7 @@
 	</script>   
     </head>
     <body>
-    	<form action="" method="post" id="form1">
+        <form action="" method="post" id="form1">
 			<input type="hidden" name="_method" value="delete"/>
 	    </form>
         <!--Logo区域开始-->
@@ -49,6 +50,13 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
+            <div class="search_add">
+            		<form:form action="${pageContext.request.contextPath}/admin" modelAttribute="admin">
+                    	<div>管理员id：<form:input class="text_search width200" type="text" path="id"/></div>
+                    	<div><input value="搜索" class="btn_search" type="submit"/></div>
+                    </form:form>
+                    <input value="增加" class="btn_add" onclick="location.href='./admin';" type="button"/>
+            </div>
             <form action="" method="post">
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
@@ -57,7 +65,17 @@
                             <th>管理员ID</th>
                             <th>姓名</th>
                             <th></th>
-                        </tr>                      	
+                        </tr> 
+                        <!-- 判断是否admins元素是否是搜索id得到的一个 --> 
+                        <c:if test="${fn:length(admins)==1}">
+                        	<tr><td>${admins.id }</td>
+								<td>${admins.name }</td>
+	                            <td>
+	                                <a href="admin/${admins.id}">编辑</a>&nbsp;&nbsp;
+	                                <a href="admin/${admins.id}" class="delete">删除</a>
+	                            </td>	
+							</tr>
+                        </c:if>                    	
              			<c:forEach var="admin" items="${admins }">
 							<tr><td>${admin.id }</td>
 								<td>${admin.name }</td>

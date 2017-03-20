@@ -9,7 +9,6 @@ public interface AdminDao {
 	public int addAdmin(Admin admin);
 	public int deleteAdmin(Integer id);
 	public int updateAdmin(Admin admin);
-	public int modifyPasswordById(Integer id, String password);
+	public int modifyPasswordById(Admin admin);
 	public Admin getAdminById(Integer id);
-	public int getMaxAdminId();
 }

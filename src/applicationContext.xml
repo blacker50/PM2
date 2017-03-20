@@ -5,13 +5,16 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
        	<context:component-scan base-package="com.ck"></context:component-scan> 
-        
+        	<!--扫描注解所在的包-->
+        	
         <!--连接数据库配置文件-->
         <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
                 <property name="location" value="classpath:db.properties"/>
@@ -41,5 +44,6 @@
         <bean id="adminService" class="com.ck.service.AdminServiceImpl">
                 <property name="adminDao" ref="adminDao"/>
         </bean>
-
+		<mvc:default-servlet-handler/>   <!-- 加上可以显示样式，路径是web.xml中路径/ -->
+		<mvc:annotation-driven></mvc:annotation-driven>  <!-- 加上可以跳转 -->
 </beans>

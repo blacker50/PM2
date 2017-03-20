@@ -33,12 +33,8 @@
         </div>
 		<div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form:form action="${pageContext.request.contextPath}/admin" method="post" 
-             class="main_form">
-					<c:if test="${admin.id==0 }">
-						<form:hidden path="id"/>
-						<input type="hidden" name="_method" value="post"/>	
-					</c:if> 
+            <form:form action="${pageContext.request.contextPath}/admin/add" method="post" 
+             modelAttribute="admin" class="main_form">
                     <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
                         <form:input path="name" name="name" type="text"/>

@@ -10,12 +10,23 @@
     </select>
 	
 	<insert id="addAdmin" parameterType="admin">
-		insert into admin(id, name,password)  
-             values(#{id},#{name},#{password})
+		insert into admin(id, guid, name,password)  
+             values(#{id},UUID(),#{name},#{password})
 	</insert>
 	
-	<select id="getMaxAdminId" resultType="int">
-        SELECT max(id) from admin
-    </select>
+	<delete id="deleteAdmin" parameterType="Integer">
+		delete from admin where id=#{id}
+	</delete>
 	
+	<select id="getAdminById" parameterType="Integer" resultType="admin">
+		select * from admin where id=#{id}
+	</select>
+	
+	<update id="updateAdminMess" parameterType="admin">
+		update admin set name=#{name} where id=#{id}
+	</update>	
+	
+	<update id="modifyAdminPassword"  parameterType="admin">
+		update admin set password=#{password} where id=#{id]
+	</update>
 </mapper>

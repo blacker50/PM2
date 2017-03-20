@@ -1,5 +1,5 @@
 /*
- * ����Ա
+ * 管理员
  */
 package com.ck.entity;
 

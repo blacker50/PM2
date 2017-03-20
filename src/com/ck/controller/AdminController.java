@@ -5,8 +5,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ck.entity.Admin;
 import com.ck.service.AdminService;
@@ -14,8 +17,9 @@ import com.ck.utils.MybatisUtils;
 
 @Controller
 public class AdminController {
-	private AdminService adminService;
 	@Autowired
+	private AdminService adminService;
+
 	public AdminService getAdminService() {
 		return adminService;
 	}
@@ -37,14 +41,51 @@ public class AdminController {
 		return "admin_add";
 	}
 	
-	@RequestMapping(value="admin", method=RequestMethod.POST)
+	@RequestMapping(value="admin/add", method=RequestMethod.POST)
 	public String addAdmin(Admin admin){
 		setAdminService(MybatisUtils.getAdminService());
-		admin.setId(adminService.getMaxAdminId()+1);
 		int index=adminService.addAdmin(admin);
 		if(index==0)
 			return "admin_add";
 		else 
-			return "redirect:showAllAdmins";
+			return "redirect:/showAllAdmins";
+	}
+	
+	@RequestMapping(value="admin/{id}",method=RequestMethod.DELETE)
+	public String deleteAdmin(@PathVariable("id") Integer id,Map<String, Object> map){
+		adminService.deleteAdmin(id);
+		return "redirect:/showAllAdmins";
+	}
+	
+	@RequestMapping(value="admin/{id}",method=RequestMethod.GET)
+	public String updateAdmin(@PathVariable("id") Integer id,Map<String, Object> map){
+		map.put("admin", adminService.getAdminById(id));
+		return "admin_modi";
+	}
+	
+	@RequestMapping(value="admin", method=RequestMethod.PUT)
+	public String updateAdmin(Admin admin){
+		adminService.updateAdmin(admin);
+		return "redirect:showAllAdmins";
+	}
+	
+	@RequestMapping(value="admin", method=RequestMethod.POST)
+	public String showAdminById(@RequestParam(value="id", required=false) Integer id,
+			Map<String, Object> map){
+		map.put("admins", adminService.getAdminById(id));
+		return "adminList";
+	}
+	
+	@ModelAttribute("admin")
+	public void getAdmin(@RequestParam(value="id", required=false) Integer id,
+			Map<String,Object> map){
+		System.out.println("modelAttribute");
+		if(id!=null&&id>0){
+			System.out.println(id);
+			Admin admin=adminService.getAdminById(id);
+			map.put("admin", admin);
+		}else{
+			map.put("admin", new Admin());			
+		}
 	}
 }
