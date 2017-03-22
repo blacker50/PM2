@@ -46,4 +46,5 @@ public class AdminServiceImpl implements AdminService {
 	public Admin getAdminById(Integer id) {
 		return adminDao.getAdminById(id);
 	}
+
 }

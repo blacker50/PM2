@@ -23,7 +23,7 @@ public class AdminControllerTest {
 
 	@Test
 	public void testDeleteAdmin() {
-		System.out.println(adminService.deleteAdmin(5));
+		System.out.println(adminService.getAdminById(1));
 	}
 
 }

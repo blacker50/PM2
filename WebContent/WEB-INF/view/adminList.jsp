@@ -67,14 +67,25 @@
                             <th></th>
                         </tr> 
                         <!-- 判断是否admins元素是否是搜索id得到的一个 --> 
-                        <c:if test="${fn:length(admins)==1}">
-                        	<tr><td>${admins.id }</td>
-								<td>${admins.name }</td>
-	                            <td>
-	                                <a href="admin/${admins.id}">编辑</a>&nbsp;&nbsp;
-	                                <a href="admin/${admins.id}" class="delete">删除</a>
-	                            </td>	
-							</tr>
+                        <c:if test="${fn:length(admins)==0}">
+                           <c:choose>
+	                           <c:when test="${!empty adminSelected}">
+	                        		<tr><td>${adminSelected.id }</td>
+										<td>${adminSelected.name }</td>
+		                            	<td>
+		                               		<a href="admin/${adminSelected.id}">编辑</a>&nbsp;&nbsp;
+		                                	<a href="admin/${adminSelected.id}" class="delete">删除</a>
+		                            	</td>	
+									</tr>
+								</c:when>
+								<c:otherwise>
+								    <tr>
+								    	<td></td>
+										<td></td>
+		                            	<td></td>	
+									</tr>
+								</c:otherwise>
+							</c:choose>
                         </c:if>                    	
              			<c:forEach var="admin" items="${admins }">
 							<tr><td>${admin.id }</td>

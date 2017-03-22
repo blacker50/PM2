@@ -72,8 +72,12 @@ public class AdminController {
 	@RequestMapping(value="admin", method=RequestMethod.POST)
 	public String showAdminById(@RequestParam(value="id", required=false) Integer id,
 			Map<String, Object> map){
-		map.put("admins", adminService.getAdminById(id));
-		return "adminList";
+		if(id!=null&&id>0) {
+				map.put("adminSelected", adminService.getAdminById(id));
+				map.put("admins",null);
+				return "adminList";
+		}
+		else return "redirect:showAllAdmins";
 	}
 	
 	@ModelAttribute("admin")
