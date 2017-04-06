@@ -21,32 +21,34 @@
             <ul id="menu">
                 <li><a href="../index.jsp" class="index_off"></a></li>
                 <li><a href="../showAllMeterReaders" class="role_off"></a></li>
-                <li><a href="../showAllAdmins" class="admin_off"></a></li>
-                <li><a href="../toll.jsp" class="fee_off"></a></li>
-                <li><a href="../meterReade.jsp" class="account_off"></a></li>
+                <li><a href="" class="account_off"></a></li>
+                <li><a href="" class="fee_off"></a></li>
                 <li><a href="../showAllDorms" class="service_off"></a></li>
-                <li><a href="../account.jsp" class="bill_off"></a></li>
-                <li><a href="../report.jsp" class="report_off"></a></li>
-                <li><a href="../showUserInfo" class="information_off"></a></li>
+                <li><a href="" class="bill_off"></a></li>
+                <li><a href="" class="report_off"></a></li>
                 <li><a href="../modifyPassword" class="password_off"></a></li>
-            </ul>            
+            </ul>           
         </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form:form action="${pageContext.request.contextPath}/admin" method="post"  modelAttribute="admin" class="main_form">
-					<c:if test="${admin.id>0 }">
+            <form:form action="${pageContext.request.contextPath}/meterReader" method="post"  modelAttribute="meterReader" class="main_form">
+					<c:if test="${meterReader.id>0 }">
 						<form:hidden path="id"/>
 						<input type="hidden" name="_method" value="put"/>	
 					</c:if>           
-                    <div class="text_info clearfix"><span>密码：</span></div>
+                    <div class="text_info clearfix"><span>姓名：</span></div>
                     <div class="input_info">
-                    	<form:input path="password" />
+                    	<form:input path="name" />
+                    </div>
+                    <div class="text_info clearfix"><span>电话：</span></div>
+                    <div class="input_info">
+                    	<form:input path="phone" />
                     </div>
                     <div class="button_info clearfix">
                         <input value="保存" class="btn_save" type="submit"/>
-                        <input value="取消" class="btn_save" type="button" onclick="location.href='../showAllAdmins';"/>
+                        <input value="取消" class="btn_save" type="button" onclick="location.href='../showAllMeterReaders';"/>
                     </div>
             </form:form>  
         </div>

@@ -37,44 +37,44 @@
             <ul id="menu">
                 <li><a href="./index.jsp" class="index_off"></a></li>
                 <li><a href="./showAllMeterReaders" class="role_off"></a></li>
-                <li><a href="./showAllAdmins" class="admin_off"></a></li>
-                <li><a href="./toll.jsp" class="fee_off"></a></li>
-                <li><a href="./meterReader.jsp" class="account_off"></a></li>
+                <li><a href="" class="account_off"></a></li>
+                <li><a href="" class="fee_off"></a></li>
                 <li><a href="./showAllDorms" class="service_off"></a></li>
-                <li><a href="./account.jsp" class="bill_off"></a></li>
-                <li><a href="./report.jsp" class="report_off"></a></li>
-                <li><a href="./showUserInfo" class="information_off"></a></li>
+                <li><a href="" class="bill_off"></a></li>
+                <li><a href="" class="report_off"></a></li>
                 <li><a href="./modifyPassword" class="password_off"></a></li>
-            </ul>            
+            </ul>           
         </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
             <div class="search_add">
-            		<form action="${pageContext.request.contextPath}/admin" method="post">
-                    	<div>管理员id：<input class="text_search width200" type="text" name="id"/></div>
+            		<form action="${pageContext.request.contextPath}/meterReader" method="post">
+                    	<div>抄表员id：<input class="text_search width200" type="text" name="id"/></div>
                     	<div><input value="搜索" class="btn_search" type="submit"/></div>
                     </form>
-                    <input value="增加" class="btn_add" onclick="location.href='./admin';" type="button"/>
+                    <input value="增加" class="btn_add" onclick="location.href='./meterReader';" type="button"/>
             </div>
             <form action="" method="post">
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
                         <tr>
-                            <th style="width:30%">管理员ID</th>
-                            <th style="width:30%">姓名</th>
+                            <th style="width:20%">抄表员ID</th>
+                            <th style="width:20%">姓名</th>
+                            <th style="width:20%">电话</th>
                             <th style="width:40%">操作</th>
                         </tr> 
                         <!-- 判断是否admins元素是否是搜索id得到的一个 --> 
-                        <c:if test="${fn:length(admins)==0}">
+                        <c:if test="${fn:length(meterReadersSelected)==0}">
                            <c:choose>
-	                           <c:when test="${!empty adminSelected}">
-	                        		<tr><td>${adminSelected.id }</td>
-										<td>${adminSelected.name }</td>
+	                           <c:when test="${!empty meterReaderSelected}">
+	                        		<tr><td>${meterReaderSelected.id }</td>
+										<td>${meterReaderSelected.name }</td>
+										<td>${meterReaderSelected.phone }</td>
 		                            	<td>
-		                               		<a href="admin/${adminSelected.id}">编辑</a>&nbsp;&nbsp;
-		                                	<a href="admin/${adminSelected.id}" class="delete">删除</a>
+		                               		<a href="meterReader/${meterReaderSelected.id}">编辑</a>&nbsp;&nbsp;
+		                                	<a href="meterReader/${meterReaderSelected.id}" class="delete">删除</a>
 		                            	</td>	
 									</tr>
 								</c:when>
@@ -82,12 +82,13 @@
 								</c:otherwise>
 							</c:choose>
                         </c:if>                    	
-             			<c:forEach var="admin" items="${admins }">
-							<tr><td>${admin.id }</td>
-								<td>${admin.name }</td>
+             			<c:forEach var="meterReader" items="${meterReaders }">
+							<tr><td>${meterReader.id }</td>
+								<td>${meterReader.name }</td>
+								<td>${meterReader.phone }</td>
 	                            <td>
-	                                <a href="admin/${admin.id}">编辑</a>&nbsp;&nbsp;
-	                                <a href="admin/${admin.id}" class="delete">删除</a>
+	                                <a href="meterReader/${meterReader.id}">编辑</a>&nbsp;&nbsp;
+	                                <a href="meterReader/${meterReader.id}" class="delete">删除</a>
 	                            </td>	
 							</tr>
 						</c:forEach>

@@ -24,62 +24,15 @@ public class AdminController {
 		return adminService;
 	}
 
-	public void setAdminService(AdminService adminService) {
-		this.adminService = adminService;
-	}
-	@RequestMapping("showAllAdmins")
-	public String list(Map<String, Object> maps) {
-		setAdminService(MybatisUtils.getAdminService());
-		maps.put("admins",adminService.selectAllAdmins());
-		return "adminList";
+	public void setAdminService() {
+		this.adminService=MybatisUtils.getAdminService();
 	}
 	
-	@RequestMapping(value="admin",method=RequestMethod.GET)
-	public String inputAdmin(Map<String, Object> maps){
-		setAdminService(MybatisUtils.getAdminService());
-		maps.put("admin",new Admin());
-		return "admin_add";
+	@RequestMapping("admin/login")
+	public String login(Admin admin) {
+		return String.valueOf(adminService.login(admin));
 	}
-	
-	@RequestMapping(value="admin/add", method=RequestMethod.POST)
-	public String addAdmin(Admin admin){
-		setAdminService(MybatisUtils.getAdminService());
-		int index=adminService.addAdmin(admin);
-		if(index==0)
-			return "admin_add";
-		else 
-			return "redirect:/showAllAdmins";
-	}
-	
-	@RequestMapping(value="admin/{id}",method=RequestMethod.DELETE)
-	public String deleteAdmin(@PathVariable("id") Integer id,Map<String, Object> map){
-		adminService.deleteAdmin(id);
-		return "redirect:/showAllAdmins";
-	}
-	
-	@RequestMapping(value="admin/{id}",method=RequestMethod.GET)
-	public String updateAdmin(@PathVariable("id") Integer id,Map<String, Object> map){
-		map.put("admin", adminService.getAdminById(id));
-		return "admin_modi";
-	}
-	
-	@RequestMapping(value="admin", method=RequestMethod.PUT)
-	public String updateAdmin(Admin admin){
-		adminService.updateAdmin(admin);
-		return "redirect:showAllAdmins";
-	}
-	
-	@RequestMapping(value="admin", method=RequestMethod.POST)
-	public String showAdminById(@RequestParam(value="id", required=false) Integer id,
-			Map<String, Object> map){
-		if(id!=null&&id>0) {
-				map.put("adminSelected", adminService.getAdminById(id));
-				map.put("admins",null);
-				return "adminList";
-		}
-		else return "redirect:showAllAdmins";
-	}
-	
+
 	@ModelAttribute("admin")
 	public void getAdmin(@RequestParam(value="id", required=false) Integer id,
 			Map<String,Object> map){

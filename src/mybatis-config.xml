@@ -6,9 +6,11 @@
     	<!--指定别名-->
     	<typeAliases>
     	    <typeAlias type="com.ck.entity.Admin" alias="admin"/>
+    	    <typeAlias type="com.ck.entity.MeterReader" alias="meterReader"/>
     	</typeAliases>
-    	<!--指定映射文件-->
+    	<!--指定映射文件--> 
     	<mappers>
        		 <mapper resource="com/ck/mapper/AdminMapper.xml"/>
+       		 <mapper resource="com/ck/mapper/MeterReaderMapper.xml"/>
     	</mappers>
 	</configuration>

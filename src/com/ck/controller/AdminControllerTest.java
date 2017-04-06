@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.ck.entity.Admin;
 import com.ck.service.AdminService;
 import com.ck.utils.MybatisUtils;
 
@@ -22,8 +23,8 @@ public class AdminControllerTest {
 	}
 
 	@Test
-	public void testDeleteAdmin() {
-		System.out.println(adminService.getAdminById(1));
+	public void testLogin(Admin admin) {
+		System.out.println(adminService.login(admin));
 	}
 
 }

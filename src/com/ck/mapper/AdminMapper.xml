@@ -5,26 +5,15 @@
 <!--命名空间-->
 <mapper namespace="com.ck.mapper.AdminMapper">
     <!--采用* 表的属性必须和pojos属性名相同-->
-    <select id="selectAll" resultType="admin">
-        SELECT * FROM admin
-    </select>
-	
-	<insert id="addAdmin" parameterType="admin">
-		insert into admin(id, guid, name,password)  
-             values(#{id},UUID(),#{name},#{password})
-	</insert>
-	
-	<delete id="deleteAdmin" parameterType="Integer">
-		delete from admin where id=#{id}
-	</delete>
+	<select id="selectAdmin" resultType="admin" parameterType="admin">
+		select id, name, password 
+		from admin
+		where name=#{name} and password=#{password}
+	</select>
 	
 	<select id="getAdminById" parameterType="Integer" resultType="admin">
 		select * from admin where id=#{id}
 	</select>
-	
-	<update id="updateAdminMess" parameterType="admin">
-		update admin set name=#{name} where id=#{id}
-	</update>	
 	
 	<update id="modifyAdminPassword"  parameterType="admin">
 		update admin set password=#{password} where id=#{id]

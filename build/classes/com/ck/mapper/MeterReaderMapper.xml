@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.ck.mapper.MeterReaderMapper">
+    <!--采用* 表的属性必须和pojos属性名相同-->
+    <select id="selectAllMeterReaders" resultType="meterReader">
+        SELECT * FROM meter_reader
+    </select>
+	
+	<insert id="addMeterReader" parameterType="meterReader">
+		insert into meter_reader(id, guid, name,password,phone)  
+             values(#{id},UUID(),#{name},#{password},#{phone})
+	</insert>
+	
+	<delete id="deleteMeterReader" parameterType="Integer">
+		delete from meter_reader where id=#{id}
+	</delete>
+	
+	<select id="getMeterReaderById" parameterType="Integer" resultType="meterReader">
+		select * from meter_reader where id=#{id}
+	</select>
+	
+	<update id="updateMeterReaderMess" parameterType="meterReader">
+		update meter_reader set name=#{name},password=#{password},phone=#{phone} where id=#{id}
+	</update>	
+	
+</mapper>

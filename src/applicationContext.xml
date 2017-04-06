@@ -44,6 +44,14 @@
         <bean id="adminService" class="com.ck.service.AdminServiceImpl">
                 <property name="adminDao" ref="adminDao"/>
         </bean>
+        
+         <bean id="meterReaderDao" class="com.ck.dao.MeterReaderDaoImpl">
+                <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+
+        <bean id="meterReaderService" class="com.ck.service.MeterReaderServiceImpl">
+                <property name="meterReaderDao" ref="meterReaderDao"/>
+        </bean>       
 		<mvc:default-servlet-handler/>   <!-- 加上可以显示样式，路径是web.xml中路径/ -->
 		<mvc:annotation-driven></mvc:annotation-driven>  <!-- 加上可以跳转 -->
 </beans>

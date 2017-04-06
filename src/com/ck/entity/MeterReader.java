@@ -1,12 +1,11 @@
-/*
- * 管理员
- */
 package com.ck.entity;
 
-public class Admin {
-	private Integer id=0;
+public class MeterReader {
+	private Integer id;
 	private String name;
 	private String password;
+	private String phone;
+
 	public Integer getId() {
 		return id;
 	}
@@ -25,18 +24,16 @@ public class Admin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", name=" + name + ", password=" + password
-				+ "]";
+		return "MeterReader [id=" + id + ", name=" + name + ", password="
+				+ password + ", phone=" + phone + "]";
 	}
-	public Admin(Integer id, String name, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-	}
-	public Admin() {
-		super();
-	}
+	
 }

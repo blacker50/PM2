@@ -6,7 +6,6 @@ import com.ck.dao.AdminDao;
 import com.ck.entity.Admin;
 
 public class AdminServiceImpl implements AdminService {
-
 	private AdminDao adminDao;
 	
 	public AdminDao getAdminDao() {
@@ -17,28 +16,13 @@ public class AdminServiceImpl implements AdminService {
 		this.adminDao = adminDao;
 	}
 
-	public List<Admin> selectAllAdmins() {
-		return adminDao.selectAllAdmins();
-	}
-
 	@Override
-	public int addAdmin(Admin admin) {
-		return adminDao.addAdmin(admin);
-	}
-
-	@Override
-	public int deleteAdmin(Integer id) {
-		return adminDao.deleteAdmin(id);
-	}
-
-	@Override
-	public int updateAdmin(Admin admin) {
-		return adminDao.updateAdmin(admin);
+	public boolean login(Admin admin) {
+		return adminDao.selectAdmin(admin)==null?false:true;
 	}
 
 	@Override
 	public int modifyPasswordById(Admin admin) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -46,5 +30,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin getAdminById(Integer id) {
 		return adminDao.getAdminById(id);
 	}
+
+
 
 }
