@@ -36,22 +36,54 @@
                 <property name="dataSource" ref="dataSource"/>
                 <property name="configLocation" value="classpath:mybatis-config.xml"/>
         </bean>
-
+		<!-- 管理员 -->
         <bean id="adminDao" class="com.ck.dao.AdminDaoImpl">
                 <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
         </bean>
-
         <bean id="adminService" class="com.ck.service.AdminServiceImpl">
                 <property name="adminDao" ref="adminDao"/>
         </bean>
         
+        <!-- 抄表员 -->
          <bean id="meterReaderDao" class="com.ck.dao.MeterReaderDaoImpl">
                 <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
         </bean>
-
         <bean id="meterReaderService" class="com.ck.service.MeterReaderServiceImpl">
                 <property name="meterReaderDao" ref="meterReaderDao"/>
-        </bean>       
+        </bean>   
+            
+ 		<!-- 宿舍 -->       
+        <bean id="dormDao" class="com.ck.dao.DormDaoImpl">
+                <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+        <bean id="dormService" class="com.ck.service.DormServiceImpl">
+                <property name="dormDao" ref="dormDao"/>
+        </bean> 
+        
+        <!-- 抄表任务 -->       
+        <bean id="taskDao" class="com.ck.dao.TaskDaoImpl">
+                <property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+        <bean id="taskService" class="com.ck.service.TaskServiceImpl">
+                <property name="taskDao" ref="taskDao"/>
+        </bean> 
+        
+        <!-- 抄表结果 -->
+        <bean id="resultDao" class="com.ck.dao.ResultDaoImpl">
+        	<property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+		<bean id="resultService" class="com.ck.service.ResultServiceImpl">
+			<property name="resultDao" ref="resultDao"></property>
+		</bean>    
+		
+		<!-- 用电参数 -->
+        <bean id="traiffParamDao" class="com.ck.dao.TraiffParamDaoImpl">
+        	<property name="sqlSessionFactory" ref="sqlsessionFactory"/>
+        </bean>
+		<bean id="traiffParamService" class="com.ck.service.TraiffParamServiceImpl">
+			<property name="traiffParamDao" ref="traiffParamDao"></property>
+		</bean>         
+		
 		<mvc:default-servlet-handler/>   <!-- 加上可以显示样式，路径是web.xml中路径/ -->
 		<mvc:annotation-driven></mvc:annotation-driven>  <!-- 加上可以跳转 -->
 </beans>

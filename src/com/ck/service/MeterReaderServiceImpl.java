@@ -9,12 +9,18 @@ public class MeterReaderServiceImpl implements MeterReaderService {
 
 	private MeterReaderDao meterReaderDao;
 	
+
 	public MeterReaderDao getMeterReaderDao() {
 		return meterReaderDao;
 	}
 
 	public void setMeterReaderDao(MeterReaderDao meterReaderDao) {
 		this.meterReaderDao = meterReaderDao;
+	}
+
+	@Override
+	public MeterReader login(MeterReader meterReader) {
+		return meterReaderDao.selectMeterReader(meterReader);
 	}
 
 	@Override
@@ -40,6 +46,11 @@ public class MeterReaderServiceImpl implements MeterReaderService {
 	@Override
 	public MeterReader getMeterReaderById(Integer id) {
 		return meterReaderDao.getMeterReaderById(id);
+	}
+
+	@Override
+	public int modifyMRPassword(MeterReader meterReader) {
+		return meterReaderDao.modifyMRPassword(meterReader);
 	}
 
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.ck.mapper.DormMapper">
+    <!--采用* 表的属性必须和pojos属性名相同-->
+    <select id="selectAllDorms" resultType="dorm">
+        SELECT * FROM dorm
+    </select>
+	
+	<insert id="addDorm" parameterType="dorm">
+		insert into dorm(id, building, num_id, guid, name,phone, remain_power)  
+             values(concat(#{building},#{num_id}),#{building}, #{num_id}, UUID(),#{name},#{phone}, #{remain_power})
+	</insert>
+	
+	<delete id="deleteDorm" parameterType="String">
+		delete from dorm where id=#{id}
+	</delete>
+	
+	<select id="getDormById" parameterType="String" resultType="dorm">
+		select * from dorm where id=#{id}
+	</select>
+	
+	<update id="updateDormMess" parameterType="dorm">
+		update dorm set name=#{name},phone=#{phone} where id=#{id}
+	</update>	
+	
+	<update id="updateRemainPowerById" parameterType="dorm">
+		update dorm set remain_power = #{remain_power} where id=#{id}
+	</update>
+	
+</mapper>

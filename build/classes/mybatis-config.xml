@@ -7,10 +7,18 @@
     	<typeAliases>
     	    <typeAlias type="com.ck.entity.Admin" alias="admin"/>
     	    <typeAlias type="com.ck.entity.MeterReader" alias="meterReader"/>
+    	    <typeAlias type="com.ck.entity.Dorm" alias="dorm"/>
+    	    <typeAlias type="com.ck.entity.Task" alias="task"/>
+    	    <typeAlias type="com.ck.entity.Result" alias="result"/>
+    	    <typeAlias type="com.ck.entity.TraiffParam" alias="traiffParam"/>
     	</typeAliases>
     	<!--指定映射文件--> 
     	<mappers>
        		 <mapper resource="com/ck/mapper/AdminMapper.xml"/>
        		 <mapper resource="com/ck/mapper/MeterReaderMapper.xml"/>
+       		 <mapper resource="com/ck/mapper/DormMapper.xml"/>
+       		 <mapper resource="com/ck/mapper/TaskMapper.xml"/>
+       		 <mapper resource="com/ck/mapper/ResultMapper.xml"/>
+       		 <mapper resource="com/ck/mapper/TraiffParamMapper.xml"/>
     	</mappers>
 	</configuration>

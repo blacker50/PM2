@@ -5,7 +5,7 @@ import java.util.List;
 import com.ck.entity.Admin;
 
 public interface AdminService {
-	public boolean login(Admin admin);
-	public int modifyPasswordById(Admin admin);
+	public Admin login(Admin admin);
 	public Admin getAdminById(Integer id);
+	public int modifyAdminPassword(Admin admin);
 }

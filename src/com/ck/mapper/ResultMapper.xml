@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.ck.mapper.ResultMapper">
+    <!--采用* 表的属性必须和pojos属性名相同-->
+    <select id="selectAllResults" resultType="result">
+        SELECT * FROM meter_reading_result
+    </select>
+	
+	<insert id="addResult" parameterType="result">
+		insert into meter_reading_result(guid, dorm_id, mreader_id, mread_month,power_read, is_exception)  
+             values(UUID(), #{dorm_id}, #{mreader_id}, #{mread_month},#{power_read}, #{is_exception})
+	</insert>
+	
+	<select id="selectResultsByMonth" parameterType="string" resultType="result">
+        SELECT * FROM meter_reading_result where mread_month=#{mread_month};
+    </select>
+    
+    <select id="selectResultByMonthAndDorm" parameterType="java.util.Map" resultType="result">
+    	select * from meter_reading_result where mread_month=#{mread_month}
+    	and dorm_id=#{dorm_id}
+    </select>
+    
+    <select id="selectResultById" parameterType="int" resultType="result">
+    	select * from meter_reading_result where id=#{id}
+    </select>
+	
+	<update id="updateResult" parameterType="result">
+		update meter_reading_result set is_exception=#{is_exception}, power_read=#{power_read}
+		where id=#{id}
+	</update>
+	
+	<select id="getIdByMonthAndDorm" parameterType="java.util.Map" resultType="int">
+		select id from meter_reading_result where mread_month=#{mread_month} 
+		and dorm_id=#{dorm_id }
+	</select>
+	
+	<select id="getPowerReadById" parameterType="int" resultType="Double">
+		select power_read from meter_reading_result where id=#{id}
+	</select>
+</mapper>

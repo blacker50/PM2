@@ -12,12 +12,12 @@
 		function adminLogin() {
  		    $.post("admin/login",$("#loginForm").serialize(),function(data){
 		        if(data=="true"){  
-		          alert("登录成功!");  
-		          location="index.jsp";  
+		          alert("登录成功!");
+		          location="index.jsp";
 		        }else{  
 		          alert("登录失败!");  
 		          return false;
-		        }  
+		        }
 		    });
 		}
 		function meterReaderLogin() {
@@ -73,7 +73,11 @@
                 <tr>
                     <td></td>
                     <td class="login_button" colspan="2">
-                        <input type="image" src="images/login_btn.png" onclick="doLogin()"/>
+                        <input type="button" onclick="doLogin()"
+                        style=" background-color:transparent;
+                        border:none;width:125px;
+                        height:42px;
+                        background-image: url('images/login_btn.png')"  />
                     </td>    
                     <td><span class="required"></span></td>                
                 </tr> 

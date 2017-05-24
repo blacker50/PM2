@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间-->
+<mapper namespace="com.ck.mapper.TaskMapper">
+    <!--采用* 表的属性必须和pojos属性名相同-->
+    <select id="selectAllTasks" resultType="task">
+        SELECT * FROM meter_reading_task
+    </select>
+	
+	<insert id="addTask" parameterType="task">
+		insert into meter_reading_task(guid, dorm_id, mread_month,mreader_id, is_read)  
+             values(UUID(), #{dorm_id}, #{mread_month},#{mreader_id}, 0)
+	</insert>
+	
+	<select id="getTaskById" parameterType="int" resultType="task">
+		select * from meter_reading_task where id=#{id}
+	</select>
+	
+	<select id="getTasksByMonth" parameterType="string" resultType="task">
+		select * from meter_reading_task where mread_month=#{mread_month}
+	</select>
+	
+	<select id="getTasksByDormId" parameterType="string" resultType="task">
+		select * from meter_reading_task where dorm_id=#{dorm_id}
+	</select>
+	
+	<select id="getTasksByMRId" parameterType="int" resultType="task">
+		select * from meter_reading_task where mreader_id=#{mreader_id}
+	</select>
+	
+	<select id="getTasksByMRIdAndMread_month"  parameterType="java.util.Map" resultType="task">
+		select * from meter_reading_task where mreader_id=#{mreader_id} 
+		and mread_month=#{mread_month}
+	</select>
+
+	<update id="setTaskRead" parameterType="int">
+		update meter_reading_task set is_read=1 where id=#{id} 
+	</update>
+</mapper>

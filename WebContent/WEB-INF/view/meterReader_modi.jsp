@@ -9,24 +9,38 @@
         <title>用电收费系统</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		function doLogout() {
+ 		    $.get("admin/logout",function(data){
+		        if(data=="logout"){  
+		          alert("退出系统");
+		          location="../login.jsp";
+		        }
+		    });
+		}
+		</script>  
     </head>
 	<body>
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="../login.jsp">[退出]</a>            
+            <font color="#FFFFFF">
+            	<span style="font-weight:bold;">${userName }</span>
+            </font>
+            <a href="javaScript:void(0)" onclick="doLogout()">[退出]</a>            
         </div>
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
                 <li><a href="../index.jsp" class="index_off"></a></li>
                 <li><a href="../showAllMeterReaders" class="role_off"></a></li>
-                <li><a href="" class="account_off"></a></li>
-                <li><a href="" class="fee_off"></a></li>
+                <li><a href="../showAllTasks" class="account_off"></a></li>
+                <li><a href="../showAllResults" class="fee_off"></a></li>
                 <li><a href="../showAllDorms" class="service_off"></a></li>
                 <li><a href="" class="bill_off"></a></li>
                 <li><a href="" class="report_off"></a></li>
-                <li><a href="../modifyPassword" class="password_off"></a></li>
+                <li><a href="../admin/pwd_modi" class="password_off"></a></li>
             </ul>           
         </div>
         <!--导航区域结束-->

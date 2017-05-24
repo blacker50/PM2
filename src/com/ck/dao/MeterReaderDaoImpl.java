@@ -9,6 +9,12 @@ import com.ck.entity.MeterReader;
 public class MeterReaderDaoImpl extends SqlSessionDaoSupport implements MeterReaderDao {
 
 	@Override
+	public MeterReader selectMeterReader(MeterReader meterReader) {
+		String statement = "com.ck.mapper.MeterReaderMapper.selectMeterReader";
+		return getSqlSession().selectOne(statement, meterReader);
+	}
+	
+	@Override
 	public List<MeterReader> selectAllMeterReaders() {
 		String statement = "com.ck.mapper.MeterReaderMapper.selectAllMeterReaders";
 		return getSqlSession().selectList(statement);
@@ -36,6 +42,12 @@ public class MeterReaderDaoImpl extends SqlSessionDaoSupport implements MeterRea
 	public MeterReader getMeterReaderById(Integer id) {
 		String statement = "com.ck.mapper.MeterReaderMapper.getMeterReaderById";
 		return getSqlSession().selectOne(statement, id);
+	}
+
+	@Override
+	public int modifyMRPassword(MeterReader meterReader) {
+		String statement = "com.ck.mapper.MeterReaderMapper.modifyMRPassword";
+		return getSqlSession().update(statement, meterReader);
 	}
 
 }

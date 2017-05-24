@@ -17,18 +17,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean login(Admin admin) {
-		return adminDao.selectAdmin(admin)==null?false:true;
-	}
-
-	@Override
-	public int modifyPasswordById(Admin admin) {
-		return 0;
+	public Admin login(Admin admin) {
+		return adminDao.selectAdmin(admin);
 	}
 
 	@Override
 	public Admin getAdminById(Integer id) {
 		return adminDao.getAdminById(id);
+	}
+
+	@Override
+	public int modifyAdminPassword(Admin admin) {
+		return adminDao.modifyAdminPassword(admin);
 	}
 
 

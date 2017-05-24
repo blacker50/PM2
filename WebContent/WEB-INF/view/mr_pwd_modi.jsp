@@ -9,34 +9,42 @@
         <title>用电收费系统</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		function doLogout() {
+ 		    $.get("meterReader/logout",function(data){
+		        if(data=="logout"){  
+		          alert("退出系统");
+		          location="../login.jsp";
+		        }
+		    });
+		}
+		</script>  
     </head>
 	<body>
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="../login.jsp">[退出]</a>            
+            <font color="#FFFFFF">
+            	<span style="font-weight:bold;">${userName }</span>
+            </font>
+            <a href="javaScript:void(0)" onclick="doLogout()">[退出]</a>            
         </div>
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <li><a href="../index.jsp" class="index_off"></a></li>
-                <li><a href="../showAllMeterReaders" class="role_off"></a></li>
-                <li><a href="../showAllAdmins" class="admin_off"></a></li>
-                <li><a href="../toll.jsp" class="fee_off"></a></li>
-                <li><a href="../meterReade.jsp" class="account_off"></a></li>
-                <li><a href="../showAllDorms" class="service_off"></a></li>
-                <li><a href="../account.jsp" class="bill_off"></a></li>
-                <li><a href="../report.jsp" class="report_off"></a></li>
-                <li><a href="../showUserInfo" class="information_off"></a></li>
-                <li><a href="../modifyPassword" class="password_off"></a></li>
-            </ul>            
+                <li><a href="/PM2/mr_index.jsp" class="index_off"></a></li>
+                <li><a href="/PM2/showTasksByMRId" class="account_off"></a></li>
+                <li><a href="/PM2/mr/pwd_modi" class="password_off"></a></li>
+            </ul>           
         </div>
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">            
             <div id="save_result_info" class="save_success">保存成功！</div>
-            <form:form action="${pageContext.request.contextPath}/admin" method="post"  modelAttribute="admin" class="main_form">
-					<c:if test="${admin.id>0 }">
+            <form:form action="${pageContext.request.contextPath}/mr/meterReader" method="post"  
+            modelAttribute="meterReader" class="main_form">
+					<c:if test="${meterReader.id>0 }">
 						<form:hidden path="id"/>
 						<input type="hidden" name="_method" value="put"/>	
 					</c:if>           
@@ -46,7 +54,7 @@
                     </div>
                     <div class="button_info clearfix">
                         <input value="保存" class="btn_save" type="submit"/>
-                        <input value="取消" class="btn_save" type="button" onclick="location.href='../showAllAdmins';"/>
+                        <input value="取消" class="btn_save" type="button" onclick="location.href='../showAllMeterReaders';"/>
                     </div>
             </form:form>  
         </div>
